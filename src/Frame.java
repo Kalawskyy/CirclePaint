@@ -16,7 +16,7 @@ public class Frame extends JFrame {
         this.setTitle("Circle paint");
         this.setResizable(false);
         this.setLayout(null);
-        field=new DrawField(0,0,x,y-60,Color.WHITE);
+        field=new DrawField(0,0,x,y-60);
         addComponents();
         this.setDefaultCloseOperation(3);
         this.setVisible(true);
@@ -45,7 +45,7 @@ public class Frame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String cmd=e.getActionCommand();
                 if(cmd.equalsIgnoreCase(nameMenu)){
-                    field.setCircleColor(color);
+                    field.setbgcolor(color);
                 }
             }
         });

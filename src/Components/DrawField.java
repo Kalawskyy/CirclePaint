@@ -5,23 +5,24 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Random;
 
 import static java.lang.Math.sqrt;
 
 public class DrawField extends JPanel implements MouseListener {
     //Adnotacje
     // Całkowity obszar roboczy to X=700px  Y=500-60
-    private Color circleColor;
+
 
     private int point_1_X, point_1_Y, point_2_X, point_2_Y;
     private ArrayList<Circle> circles = new ArrayList<>();
 
-    public DrawField(int x, int y, int sizeX, int sizeY, Color circleColor) {
+    public DrawField(int x, int y, int sizeX, int sizeY) {
         super();
         this.setBounds(x, y, sizeX, sizeY);
         this.setBackground(Color.GRAY);
         addMouseListener(this);
-        this.circleColor = circleColor;
+
         this.add(new JLabel() {
             @Override
             public void paintComponent(Graphics g) {
@@ -105,7 +106,7 @@ public class DrawField extends JPanel implements MouseListener {
             tempDiamB = 0;
         }
         int diameter = (int) sqrt((tempDiamA * tempDiamA) + (tempDiamB * tempDiamB));
-        addCircleToList(middleX-(diameter/2), middleY-(diameter/2), diameter,circleColor);
+        addCircleToList(middleX-(diameter/2), middleY-(diameter/2), diameter,randomColor());
     }
 
     private void addCircleToList(int posX, int posY, int diameter, Color color) {
@@ -115,7 +116,13 @@ public class DrawField extends JPanel implements MouseListener {
             circles.get(i).circeSimplyShow();
         }
     }
-    public void setCircleColor(Color color){
-        this.circleColor=color;
+    public void setbgcolor(Color color){
+        this.setBackground(color);
+    }
+    private Color randomColor(){
+        Random r=new Random();
+        Color temp=new Color(r.nextInt());
+
+        return temp;
     }
 }
